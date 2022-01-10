@@ -9,24 +9,58 @@ export async function getUser() {
 
 export async function getFamilies() {
     // fetch all families and their bunnies
+    const response = await client
+        .from(`loving_families`)
+        .select(`*, fuzzy_bunnies (*)`);
 
     return checkError(response);    
 }
 
 export async function deleteBunny(id) {
     // delete a single bunny using the id argument
+    const response = await client
+        .from(`fuzzy_bunnies`)
+        .delete()
+        .match({ id })
+        .single();
 
     return checkError(response);    
 }
-
 
 export async function createBunny(bunny) {
-    // create a bunny using the bunny argument
+    const response = await client
+        .from(`fuzzy_bunnies`)
+        .insert({
+            ...bunny,
+            user_id: client.auth.session().user.id
+        });
 
     return checkError(response);    
 }
 
+export function renderBunny(bun){
+    const bunny = document.createElement(`p`);
+    bunny.classList.add(`bunny`);
+    bunny.textContent = bun.name;
 
+    bunny.addEventListener(`click`, async() => {
+        await deleteBunny(bun.id);
+        const families = await getFamilies();
+        displayFamilies(families);
+    });
+
+    return bunny;
+}
+
+export async function addNewFamily(name){
+    const response = await client
+        .from(`loving_families`)
+        .insert({ 
+            name,
+        });
+
+    return checkError(response);
+}
 
 export async function checkAuth() {
     const user = await getUser();
