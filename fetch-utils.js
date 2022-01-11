@@ -1,6 +1,10 @@
 const SUPABASE_URL = 'https://gxwgjhfyrlwiqakdeamc.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNjQxMTMxMiwiZXhwIjoxOTUxOTg3MzEyfQ.PHekiwfLxT73qQsLklp0QFEfNx9NlmkssJFDnlvNIcA';
 
+// import {
+//     displayFamilies
+// } from '../families.js';
+
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 export async function getUser() {
@@ -36,20 +40,6 @@ export async function createBunny(bunny) {
         });
 
     return checkError(response);    
-}
-
-export function renderBunny(bun){
-    const bunny = document.createElement(`p`);
-    bunny.classList.add(`bunny`);
-    bunny.textContent = bun.name;
-
-    bunny.addEventListener(`click`, async() => {
-        await deleteBunny(bun.id);
-        const families = await getFamilies();
-        displayFamilies(families);
-    });
-
-    return bunny;
 }
 
 export async function addNewFamily(name){

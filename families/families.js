@@ -1,8 +1,7 @@
 import { 
     checkAuth, 
-    renderBunny,
-    // deleteBunny, 
-    getFamilies, 
+    getFamilies,
+    deleteBunny,
     logout
 } from '../fetch-utils.js';
 
@@ -47,19 +46,19 @@ export async function displayFamilies(families) {
     }
 }
 
-// function renderBunny(bun){
-//     const bunny = document.createElement(`p`);
-//     bunny.classList.add(`bunny`);
-//     bunny.textContent = bun.name;
+export function renderBunny(bun){
+    const bunny = document.createElement(`p`);
+    bunny.classList.add(`bunny`);
+    bunny.textContent = bun.name;
 
-//     bunny.addEventListener(`click`, async() => {
-//         await deleteBunny(bun.id);
-//         const families = await getFamilies();
-//         displayFamilies(families);
-//     });
+    bunny.addEventListener(`click`, async() => {
+        await deleteBunny(bun.id);
+        const families = await getFamilies();
+        displayFamilies(families);
+    });
 
-//     return bunny;
-// }
+    return bunny;
+}
 
 window.addEventListener('load', async() => {
     const families = await getFamilies();
