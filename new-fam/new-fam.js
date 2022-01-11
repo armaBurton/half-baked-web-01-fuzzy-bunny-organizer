@@ -25,5 +25,5 @@ form.addEventListener(`submit`, async(e) => {
     form.reset();
 
     await addNewFamily(newFamilyName);
-    window.location.href = `../families`;
+    window.location.href = `../update?id=`;
 });
