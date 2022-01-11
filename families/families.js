@@ -2,7 +2,8 @@ import {
     checkAuth, 
     getFamilies,
     deleteBunny,
-    logout
+    logout,
+    updateBunny
 } from '../fetch-utils.js';
 
 checkAuth();
@@ -50,9 +51,12 @@ export function renderBunny(bun){
     const bunny = document.createElement(`p`);
     bunny.classList.add(`bunny`);
     bunny.textContent = bun.name;
-
+    console.log(bun);
     bunny.addEventListener(`click`, async() => {
-        await deleteBunny(bun.id);
+        // await deleteBunny(bun.id);
+        // await updateBunny(bun);
+        // window.location.href = `../create/index.html?obj=${bun}`;
+        window.location.href = `../update/index.html?id=${bun.id}&name=${bun.name}&family_id=${bun.family_id}&user_id=${bun.user_id}`;
         const families = await getFamilies();
         displayFamilies(families);
     });
