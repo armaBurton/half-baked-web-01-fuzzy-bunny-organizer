@@ -1,5 +1,4 @@
 import { 
-    createBunny, 
     updateBunny,
     getFamilies, 
     checkAuth, 
@@ -15,17 +14,12 @@ const urlParams = new URLSearchParams(queryString);
 
 let bunny = {};
 
-
-
 export async function storeBunny(id){
     console.log(id);
 }
 
 form.addEventListener('submit', async(e) => {
-    // prevent default
     e.preventDefault();
-    // get the name and family id from the form
-
 
     const x = document.getElementById(`family-id`);
     const val = x.options[x.selectedIndex].value;
@@ -52,19 +46,16 @@ window.addEventListener(`load`, async() => {
     console.log(bunny);
 
     const families = await getFamilies();
-    // console.log(families);
     for (let each of families){
-        // create an option tag
         const option = document.createElement(`option`);
-        // set the option's value and text content
+
         option.value = each.id;
         option.textContent = each.name;
-        // and append the option to the select
+
         familyName.append(option);
     }
 
 });
-
 
 checkAuth();
 

@@ -3,7 +3,6 @@ import {
     getFamilies,
     deleteBunny,
     logout,
-    updateBunny
 } from '../fetch-utils.js';
 
 checkAuth();
@@ -25,24 +24,19 @@ export async function displayFamilies(families) {
         const familyName = document.createElement(`p`);
         const bunniesEl = document.createElement(`div`);
 
-        // add the bunnies css class to the bunnies el, and family css class to the family el
         familyEl.classList.add(`family`);
         bunniesEl.classList.add(`bunnies`);
 
-        // put the family name in the name element
         familyName.textContent = family.name;
 
-        // for each of this family's bunnies
         for (let bun of family.fuzzy_bunnies){
             const bunny = renderBunny(bun);
 
             bunniesEl.append(bunny);
         }
 
-        // append the bunniesEl and nameEl to the familyEl
         familyEl.append(familyName, bunniesEl);
     
-        // append the familyEl to the familiesEl
         familiesEl.append(familyEl);
     }
 }
@@ -53,9 +47,6 @@ export function renderBunny(bun){
     bunny.textContent = bun.name;
     console.log(bun);
     bunny.addEventListener(`click`, async() => {
-        // await deleteBunny(bun.id);
-        // await updateBunny(bun);
-        // window.location.href = `../create/index.html?obj=${bun}`;
         window.location.href = `../update/index.html?id=${bun.id}&name=${bun.name}&family_id=${bun.family_id}&user_id=${bun.user_id}`;
         const families = await getFamilies();
         displayFamilies(families);
