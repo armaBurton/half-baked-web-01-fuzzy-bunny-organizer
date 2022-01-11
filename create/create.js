@@ -34,7 +34,6 @@ window.addEventListener('load', async() => {
     const familyName = document.querySelector(`label select`);
     // go get the families from supabase
     const families = await getFamilies();
-    console.log(families);
     // for each family
     for (let each of families){
         // create an option tag

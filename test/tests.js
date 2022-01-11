@@ -1,7 +1,7 @@
 // import './example.test.js';
 // IMPORT MODULES under test here:
 // import { example } from '../example.js';
-import { renderBunny } from '../fetch-utils.js';
+import { renderBunny } from '../families/families.js';
 
 // const SUPABASE_URL = 'https://gxwgjhfyrlwiqakdeamc.supabase.co';
 // const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNjQxMTMxMiwiZXhwIjoxOTUxOTg3MzEyfQ.PHekiwfLxT73qQsLklp0QFEfNx9NlmkssJFDnlvNIcA';
@@ -15,7 +15,7 @@ test('time to test a function', (expect) => {
     const bunny = {
         name: 'doof',
         family_id: 3
-    }
+    };
     //Arrange
     // Set up your arguments and expectations
     const expected = '<p class="bunny">doof</p>';
